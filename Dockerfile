@@ -1,7 +1,7 @@
 # parameters
-ARG REPO_NAME="ControlV1"
-ARG DESCRIPTION="Primeras pruebas E Y D"
-ARG MAINTAINER="Ethan Diego ethant.leiva@gmail.com"
+ARG REPO_NAME="ADVENTURES-IN-DUCKIETOWN"
+ARG DESCRIPTION="explore"
+ARG MAINTAINER="me (me@me.me)"
 # pick an icon from: https://fontawesome.com/v4.7.0/icons/
 ARG ICON="cube"
 
