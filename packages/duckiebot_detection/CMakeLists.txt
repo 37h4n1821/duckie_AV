@@ -1,17 +1,13 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(led_emitter)
-
+project(duckiebot_detection)
 
 find_package(catkin REQUIRED COMPONENTS
-  rospy
+  cv_bridge
   duckietown_msgs
-  std_msgs
+  roscpp
+  rospy
 )
 
-catkin_python_setup()
 
 catkin_package()
 
-include_directories(
-  ${catkin_INCLUDE_DIRS}
-)

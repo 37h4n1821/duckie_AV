@@ -1,7 +1,7 @@
 # parameters
-ARG REPO_NAME="DuckietownAV"
-ARG DESCRIPTION="La gran aventura del diego y el ethan pa hacer esta wea"
-ARG MAINTAINER="Los dos"
+ARG REPO_NAME="LAB_4"
+ARG DESCRIPTION="StartCode"
+ARG MAINTAINER="Zepeng Xiao"
 # pick an icon from: https://fontawesome.com/v4.7.0/icons/
 ARG ICON="cube"
 
