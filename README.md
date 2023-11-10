@@ -1,14 +1,5 @@
-# ucb_player2
+# Duckie AV
 
-This workspace implements the exercise 4 requirements. Namely,
-it implements a PID controller, computer vision for lane following, computer
-vision for grid detection on the back of a duckiebot, and a finite state machine
-for safely tracking a duckiebot across duckietown.
-
-This ROS program is based on
-[Xiao's](https://github.com/XZPshaw/CMPUT412503_exercise4) grid-detection
-template, with contributions from the lane following package Justin Francis
-posted on eclass.
 
 ## Installation and Usage
 

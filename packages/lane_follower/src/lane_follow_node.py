@@ -54,14 +54,14 @@ class LEDIndex(Enum):
     # 3 == back right
     # 4 == back left
     All = set(range(0, 5))
-    Left = set([0, 4])
-    Right = set([2, 3])
+    Left = set([0, 2])
+    Right = set([1, 3])
     Back = set([3, 4])
-    Front = set([0, 2])
-    BackLeft = set([4])
+    Front = set([0, 1])
+    BackLeft = set([2])
     BackRight = set([3])
     FrontLeft = set([0])
-    FrontRight = set([2])
+    FrontRight = set([1])
 
 
 class FrozenClass(object):
