@@ -4,6 +4,7 @@ from collections import deque
 from enum import Enum, auto, unique
 from functools import lru_cache
 
+import requests
 import cv2
 import numpy as np
 import rospy
@@ -53,10 +54,10 @@ class LEDIndex(Enum):
     # 2 == front right
     # 3 == back right
     # 4 == back left
-    All = set(range(0, 5))
+    All = set(range(4))
     Left = set([0, 2])
     Right = set([1, 3])
-    Back = set([3, 4])
+    Back = set([2, 3])
     Front = set([0, 1])
     BackLeft = set([2])
     BackRight = set([3])
@@ -207,10 +208,17 @@ class LaneFollowNode(DTROS, FrozenClass):
 
     def ajoin_callback(self, msg):
         self.lane_callback(msg)
+        self.obtener_info(msg)
 
         if self.state is not DuckieState.Stopped:
             self.stop_callback(msg)
+    
+    def obtener_info(self, msg):
+        x = requests.get(f"http://192.168.195.234:3000/duckie/estado/{self.veh}")
+        print(x.json())
 
+
+    
     def lane_callback(self, msg):
         img = self.bridge.compressed_imgmsg_to_cv2(msg, "bgr8")
         crop = img[300:-1, :, :]
@@ -436,13 +444,12 @@ class LaneFollowNode(DTROS, FrozenClass):
         on_color.r, on_color.g, on_color.b = color.value
         on_color.a = 1.0
 
-        for i in range(5):
+        for i in range(4):
             led_msg.rgb_vals.append(
                 on_color if i in index_set.value else OFF_COLOR
             )
 
-        if not self.params["no_led"]:
-            self.led_pub.publish(led_msg)
+        self.led_pub.publish(led_msg)
 
     def run(self):
         rate = rospy.Rate(self.params["run_rate"])
