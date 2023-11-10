@@ -1,13 +1,13 @@
 # parameters
 ARG REPO_NAME="LAB_4"
 ARG DESCRIPTION="StartCode"
-ARG MAINTAINER="Zepeng Xiao"
+ARG MAINTAINER="Unmaintained"
 # pick an icon from: https://fontawesome.com/v4.7.0/icons/
 ARG ICON="cube"
 
 # ==================================================>
 # ==> Do not change the code below this line
-ARG ARCH
+ARG ARCH=arm64v8
 ARG DISTRO=daffy
 ARG DOCKER_REGISTRY=docker.io
 ARG BASE_IMAGE=dt-ros-commons
@@ -74,6 +74,9 @@ RUN dt-install-launchers "${LAUNCH_PATH}"
 
 # define default command
 CMD ["bash", "-c", "dt-launcher-${DT_LAUNCHER}"]
+
+# copy the params
+COPY ./config/params.json /
 
 # store module metadata
 LABEL org.duckietown.label.module.type="${REPO_NAME}" \
