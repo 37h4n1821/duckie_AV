@@ -3,7 +3,7 @@ import json
 from collections import deque
 from enum import Enum, auto, unique
 from functools import lru_cache
-
+import datetime
 import requests
 import cv2
 import numpy as np
@@ -82,6 +82,8 @@ class LaneFollowNode(DTROS, FrozenClass):
         super(LaneFollowNode, self).__init__(
             node_name=node_name, node_type=NodeType.GENERIC
         )
+
+        self.timeout_last_pet= datetime.datetime.now().microsecond
 
         # ╔────────────────────────────────────────────────────────────────────╗
         # │  Cδηsταητs (τδ τμηε)                                               |
@@ -214,8 +216,14 @@ class LaneFollowNode(DTROS, FrozenClass):
             self.stop_callback(msg)
     
     def obtener_info(self, msg):
-        x = requests.get(f"http://192.168.195.234:3000/duckie/estado/{self.veh}")
-        print(x.json())
+
+        if (self.timeout_last_pet<datetime.datetime.now().microsecond-400):
+            try:
+                self.timeout_last_pet=datetime.datetime.now().microsecond
+                x = requests.get(f"http://192.168.195.234:3000/duckie/estado/{self.veh}",timeout=0.5)
+                print(x.json())
+            except:
+                a=0
 
 
     
